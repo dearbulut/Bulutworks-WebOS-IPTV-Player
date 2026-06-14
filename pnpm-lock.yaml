@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@mediabunny/ac3':
+        specifier: ^1.46.0
+        version: 1.46.0(mediabunny@1.46.0)
       '@noriginmedia/norigin-spatial-navigation':
         specifier: ^2.3.0
         version: 2.3.0(react@18.3.1)
+      mediabunny:
+        specifier: ^1.46.0
+        version: 1.46.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -282,6 +288,11 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
+  '@mediabunny/ac3@1.46.0':
+    resolution: {integrity: sha512-4CReIRRJy4UK2338iy0IHRp64U6zcfd9VZyXJ676u4dEo25CQlFz/s12cbnFl+wNrtCtK5Al/ZpPXBaTjV8+vA==}
+    peerDependencies:
+      mediabunny: ^1.0.0
+
   '@noriginmedia/norigin-spatial-navigation@2.3.0':
     resolution: {integrity: sha512-gR//N45NnKz1h0/AVknkfg7QnNATETdgXUUD3EKPxuQPyhk7NhsphODzRamyvjYaxsU6VbY/szcUlzBWWBkNMw==}
     peerDependencies:
@@ -440,6 +451,12 @@ packages:
   '@types/babel__traverse@7.28.0':
     resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
 
+  '@types/dom-mediacapture-transform@0.1.11':
+    resolution: {integrity: sha512-Y2p+nGf1bF2XMttBnsVPHUWzRRZzqUoJAKmiP10b5umnO6DDrWI0BrGDJy1pOHoOULVmGSfFNkQrAlC5dcj6nQ==}
+
+  '@types/dom-webcodecs@0.1.13':
+    resolution: {integrity: sha512-O5hkiFIcjjszPIYyUSyvScyvrBoV3NOEEZx/pMlsu44TKzWNkLVBBxnxJz42in5n3QIolYOcBYFCPZZ0h8SkwQ==}
+
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
 
@@ -559,6 +576,9 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  mediabunny@1.46.0:
+    resolution: {integrity: sha512-HIaMQ6PVMndrFb9sNCh9/uAsLFBfLzyAgbk3kN7ZqlRRq//9RPYqIOQtXYpkbWBZU8ZJkaAUNLDtwTcdKo7yQw==}
 
   micromatch@4.0.8:
     resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
@@ -915,6 +935,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@mediabunny/ac3@1.46.0(mediabunny@1.46.0)':
+    dependencies:
+      mediabunny: 1.46.0
+
   '@noriginmedia/norigin-spatial-navigation@2.3.0(react@18.3.1)':
     dependencies:
       lodash: 4.18.1
@@ -1017,6 +1041,12 @@ snapshots:
   '@types/babel__traverse@7.28.0':
     dependencies:
       '@babel/types': 7.29.7
+
+  '@types/dom-mediacapture-transform@0.1.11':
+    dependencies:
+      '@types/dom-webcodecs': 0.1.13
+
+  '@types/dom-webcodecs@0.1.13': {}
 
   '@types/estree@1.0.9': {}
 
@@ -1137,6 +1167,11 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  mediabunny@1.46.0:
+    dependencies:
+      '@types/dom-mediacapture-transform': 0.1.11
+      '@types/dom-webcodecs': 0.1.13
 
   micromatch@4.0.8:
     dependencies:

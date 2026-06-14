@@ -4,6 +4,7 @@ export enum Route {
   OnboardingM3U    = 'onboarding-m3u',
   OnboardingXtream = 'onboarding-xtream',
   Home             = 'home',
+  Live             = 'live',
 }
 
 export function routeUrl(route: Route): string {
