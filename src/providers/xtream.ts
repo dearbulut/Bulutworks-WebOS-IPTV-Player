@@ -13,20 +13,25 @@ interface XtreamStream {
 }
 
 export class XtreamProvider implements Provider {
-  constructor(private cfg: { host: string; username: string; password: string }) {}
+  private readonly host:     string
+  private readonly username: string
+  private readonly password: string
 
-  private get base() {
-    return this.cfg.host.replace(/\/+$/, '')
+  constructor(cfg: { host: string; username: string; password: string }) {
+    // Normalise once so every derived URL is consistent.
+    this.host     = cfg.host.replace(/\/+$/, '')
+    this.username = cfg.username
+    this.password = cfg.password
   }
 
   private apiUrl(action: string, extra: Record<string, string> = {}): string {
     const p = new URLSearchParams({
-      username: this.cfg.username,
-      password: this.cfg.password,
+      username: this.username,
+      password: this.password,
       action,
       ...extra,
     })
-    return `${this.base}/player_api.php?${p}`
+    return `${this.host}/player_api.php?${p}`
   }
 
   async getCategories(): Promise<Category[]> {
@@ -43,14 +48,17 @@ export class XtreamProvider implements Provider {
     if (categoryId) extra.category_id = categoryId
     const res  = await fetch(this.apiUrl('get_live_streams', extra))
     const data = (await res.json()) as XtreamStream[]
-    const { username: u, password: p } = this.cfg
+
+    const u = encodeURIComponent(this.username)
+    const p = encodeURIComponent(this.password)
+
     return data.map((s) => ({
       id:         String(s.stream_id),
       name:       s.name,
       logo:       s.stream_icon || undefined,
       categoryId: s.category_id != null ? String(s.category_id) : undefined,
-      // HLS (.m3u8) first; url.ts provides .ts fallback helper
-      streamUrl:  `${this.base}/live/${u}/${p}/${s.stream_id}.m3u8`,
+      // HLS (.m3u8) preferred; url.ts provides a .ts legacy fallback helper.
+      streamUrl:  `${this.host}/live/${u}/${p}/${s.stream_id}.m3u8`,
       type:       'live' as const,
     }))
   }

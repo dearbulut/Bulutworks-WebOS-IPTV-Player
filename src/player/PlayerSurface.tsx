@@ -4,6 +4,19 @@ import { PlayerEngine } from './PlayerEngine'
 const CANVAS_W = 1280
 const CANVAS_H = 720
 
+/**
+ * Mask the password segment in Xtream-style stream URLs so credentials
+ * don't appear in error overlays or screenshots.
+ * Input:  .../live/username/s3cr3t/12345.m3u8
+ * Output: .../live/username/•••/12345.m3u8
+ */
+function maskCredentials(text: string): string {
+  return text.replace(
+    /(\/(?:live|movie|series)\/[^/\s?#]+\/)([^/\s?#]+)(\/)/g,
+    '$1•••$3',
+  )
+}
+
 interface PlayerSurfaceProps {
   url: string | null
 }
@@ -29,7 +42,10 @@ export default function PlayerSurface({ url }: PlayerSurfaceProps) {
     engine
       .onReady(()    => setState('loading'))
       .onPlaying(()  => setState('playing'))
-      .onError((err) => { setState('error'); setErrorMsg(err.message) })
+      .onError((err) => {
+        setState('error')
+        setErrorMsg(maskCredentials(err.message))
+      })
 
     engine.load(url, canvasRef.current)
 
