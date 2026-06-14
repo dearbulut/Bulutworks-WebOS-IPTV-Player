@@ -1,0 +1,4 @@
+# pnpm 11 project settings (single-package; no workspaces array)
+# Allow esbuild to run its native-binary install script (required by Vite).
+allowBuilds:
+  esbuild: true

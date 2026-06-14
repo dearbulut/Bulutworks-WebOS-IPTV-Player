@@ -1,0 +1,14 @@
+{
+  "id": "com.bulutworks.iptv",
+  "version": "0.1.0",
+  "vendor": "BulutWorks",
+  "type": "web",
+  "main": "index.html",
+  "title": "BulutWorks IPTV Player",
+  "iconColor": "#0E1014",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "handlesRelaunch": false,
+  "disableBackHistoryAPI": true,
+  "supportTouchMode": "none"
+}

@@ -1,0 +1,8 @@
+node_modules
+dist
+*.ipk
+.DS_Store
+.env*
+.vscode
+out
+.npmrc

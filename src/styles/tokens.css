@@ -1,0 +1,43 @@
+:root {
+  /* Palette */
+  --color-bg:          #0E1014;
+  --color-surface:     #1A1E24;
+  --color-surface-alt: #232830;
+  --color-border:      #2E3540;
+  --color-accent:      #00BFA6;
+  --color-accent-dim:  rgba(0, 191, 166, 0.15);
+  --color-text:        #F0F4F8;
+  --color-text-muted:  #8A9BB0;
+  --color-error:       #FF6B6B;
+  --color-error-dim:   rgba(255, 107, 107, 0.12);
+
+  /* Focus ring */
+  --focus-ring:        0 0 0 3px var(--color-accent);
+
+  /* Radii */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+
+  /* Spacing scale (8px base) */
+  --space-1:   8px;
+  --space-2:  16px;
+  --space-3:  24px;
+  --space-4:  32px;
+  --space-5:  48px;
+  --space-6:  64px;
+  --space-7:  96px;
+  --space-8: 128px;
+
+  /* Type scale (1920×1080 TV) */
+  --font-xs:   20px;
+  --font-sm:   24px;
+  --font-md:   30px;
+  --font-lg:   40px;
+  --font-xl:   56px;
+  --font-2xl:  72px;
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+  --transition-mid:  200ms ease;
+}

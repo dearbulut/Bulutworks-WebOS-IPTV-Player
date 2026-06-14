@@ -1,0 +1,25 @@
+import type { TranslationKey } from './en'
+
+export const tr: Record<TranslationKey, string> = {
+  splash_tagline:              'LG webOS için açık kaynaklı IPTV',
+  onboarding_choose_source:    'Kaynak Türü Seçin',
+  onboarding_m3u_card_title:   'M3U Oynatma Listesi URL',
+  onboarding_m3u_card_sub:     'Doğrudan bir .m3u veya .m3u8 bağlantısı girin',
+  onboarding_xtream_card_title:'Xtream Codes',
+  onboarding_xtream_card_sub:  'Host, kullanıcı adı ve şifre girin',
+  onboarding_m3u_title:        'M3U Oynatma Listesi URL',
+  onboarding_m3u_desc:         'M3U veya M3U8 oynatma listesi dosyanızın doğrudan bağlantısını girin.',
+  onboarding_xtream_title:     'Xtream Codes',
+  onboarding_xtream_desc:      'Xtream Codes sağlayıcı bilgilerinizi girin.',
+  field_playlist_url:          'Oynatma Listesi URL',
+  field_server_url:            'Sunucu URL',
+  field_username:              'Kullanıcı Adı',
+  field_password:              'Şifre',
+  home_connected:              'Bağlandı. Canlı TV S3\'te geliyor.',
+  home_change_source:          'Kaynağı Değiştir',
+  type_here:                   'Aşağıdaki klavyeyi kullanın…',
+  err_url_scheme:              'URL http:// veya https:// ile başlamalıdır',
+  err_m3u_format:              'URL .m3u / .m3u8 ile bitmeli veya /get.php içermelidir',
+  err_host_format:             'Geçerli bir URL girilmeli, ör. http://host.com:8080',
+  err_required:                'Bu alan zorunludur',
+}

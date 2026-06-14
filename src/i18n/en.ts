@@ -1,0 +1,25 @@
+export const en = {
+  splash_tagline:              'Open-source IPTV for LG webOS',
+  onboarding_choose_source:    'Choose Source Type',
+  onboarding_m3u_card_title:   'M3U Playlist URL',
+  onboarding_m3u_card_sub:     'Enter a direct .m3u or .m3u8 link',
+  onboarding_xtream_card_title:'Xtream Codes',
+  onboarding_xtream_card_sub:  'Enter host, username & password',
+  onboarding_m3u_title:        'M3U Playlist URL',
+  onboarding_m3u_desc:         'Enter a direct link to your M3U or M3U8 playlist file.',
+  onboarding_xtream_title:     'Xtream Codes',
+  onboarding_xtream_desc:      'Enter your Xtream Codes provider details.',
+  field_playlist_url:          'Playlist URL',
+  field_server_url:            'Server URL',
+  field_username:              'Username',
+  field_password:              'Password',
+  home_connected:              'Connected. Live TV coming in S3.',
+  home_change_source:          'Change Source',
+  type_here:                   'Type on keyboard below…',
+  err_url_scheme:              'URL must start with http:// or https://',
+  err_m3u_format:              'URL must end with .m3u / .m3u8, or contain /get.php',
+  err_host_format:             'Must be a valid URL, e.g. http://host.com:8080',
+  err_required:                'This field is required',
+} as const
+
+export type TranslationKey = keyof typeof en
