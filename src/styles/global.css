@@ -151,6 +151,15 @@ html, body, #root {
 }
 
 /* ── TextField ───────────────────────────────────────── */
+.text-field-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 960px;
+}
+
 .text-field {
   display: flex;
   flex-direction: column;
@@ -160,8 +169,8 @@ html, body, #root {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   transition: border-color var(--transition-fast);
-  width: 100%;
-  max-width: 960px;
+  flex: 1;
+  min-width: 0;
 }
 
 .text-field--active {
@@ -201,6 +210,56 @@ html, body, #root {
 .text-field__error {
   font-size: var(--font-xs);
   color: var(--color-error);
+}
+
+/* ── Paste Button ────────────────────────────────────── */
+.paste-btn-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.paste-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: 20px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.paste-btn--focused {
+  border-color: var(--color-accent);
+  background: var(--color-accent-dim);
+  box-shadow: var(--focus-ring);
+}
+
+.paste-btn__tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 320px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.paste-btn__tooltip code {
+  color: var(--color-accent);
+  font-family: monospace;
+  font-size: 0.9em;
 }
 
 /* ── On-Screen Keyboard ──────────────────────────────── */

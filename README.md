@@ -96,6 +96,24 @@ scripts/
   copy-webos-meta.mjs      Post-build: copies webos-meta/ → dist/
 ```
 
+## Development tips
+
+### Pasting text in the webOS Simulator
+
+The Simulator's Electron shell can block `Cmd+V` from reaching a focused `<input>`. Every TextField shows a **📋 Paste** button — click it (or navigate to it with arrow keys and press OK) to read your clipboard via the Clipboard API.
+
+If the Clipboard API itself is blocked (insecure context or permission denied), a tooltip will tell you to use the dev-console fallback:
+
+1. Open the Simulator's DevTools (`Ctrl+Shift+I` / `Cmd+Opt+I`).
+2. Focus the field you want to fill (click or arrow to it).
+3. In the console, run:
+
+```js
+bw.paste('http://your-xtream-server:8080')
+```
+
+`bw.paste(text)` always targets the last-focused TextField, so focus the right field first.
+
 ## License
 
 MIT — Copyright © 2024 Mehmet Bulut
