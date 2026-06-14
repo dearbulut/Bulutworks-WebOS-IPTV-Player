@@ -72,10 +72,13 @@ export default function XtreamEntryScreen() {
           {FIELD_ORDER.map((f) => (
             <TextField
               key={f}
+              focusKey={`xtream-field-${f}`}
               label={FIELD_LABELS[f]}
               value={fields[f]}
               active={active === f}
               error={errors[f]}
+              onChange={(v) => setFields((prev) => ({ ...prev, [f]: v }))}
+              onFocused={() => setActive(f)}
             />
           ))}
         </div>

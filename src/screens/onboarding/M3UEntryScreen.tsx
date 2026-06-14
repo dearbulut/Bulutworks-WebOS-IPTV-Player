@@ -40,6 +40,9 @@ export default function M3UEntryScreen() {
           value={url}
           active
           error={error ?? undefined}
+          inputMode="url"
+          onChange={setUrl}
+          focusKey="m3u-url-field"
         />
         <OnScreenKeyboard
           value={url}

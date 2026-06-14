@@ -189,34 +189,26 @@ html, body, #root {
   letter-spacing: 0.08em;
 }
 
-.text-field__value {
+.text-field__input {
+  background: transparent;
+  border: none;
+  outline: none;
   font-size: var(--font-md);
+  font-family: inherit;
   color: var(--color-text);
+  caret-color: var(--color-accent);
+  width: 100%;
   min-height: 1.4em;
-  display: flex;
-  align-items: center;
-  gap: 2px;
 }
 
-.text-field__placeholder {
+.text-field__input::placeholder {
   color: var(--color-text-muted);
   font-style: italic;
-}
-
-.text-field__cursor {
-  display: inline-block;
-  color: var(--color-accent);
-  font-weight: 300;
-  animation: blink 1s step-end infinite;
 }
 
 .text-field__error {
   font-size: var(--font-xs);
   color: var(--color-error);
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
 }
 
 /* ── On-Screen Keyboard ──────────────────────────────── */
