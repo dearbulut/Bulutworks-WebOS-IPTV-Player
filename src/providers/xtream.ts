@@ -6,10 +6,20 @@ interface XtreamCategory {
 }
 
 interface XtreamStream {
-  stream_id:    number
-  name:         string
-  stream_icon?: string
-  category_id?: string | number
+  stream_id:      number
+  name:           string
+  stream_icon?:   string
+  category_id?:   string | number
+  // Some providers supply a pre-built URL; prefer it over the canonical pattern.
+  direct_source?: string
+  stream_url?:    string
+}
+
+function maskUrl(url: string): string {
+  return url.replace(
+    /(\/(?:live|movie|series)\/[^/\s?#]+\/)([^/\s?#]+)(\/)/g,
+    '$1•••$3',
+  )
 }
 
 export class XtreamProvider implements Provider {
@@ -52,14 +62,28 @@ export class XtreamProvider implements Provider {
     const u = encodeURIComponent(this.username)
     const p = encodeURIComponent(this.password)
 
-    return data.map((s) => ({
-      id:         String(s.stream_id),
-      name:       s.name,
-      logo:       s.stream_icon || undefined,
-      categoryId: s.category_id != null ? String(s.category_id) : undefined,
-      // HLS (.m3u8) preferred; url.ts provides a .ts legacy fallback helper.
-      streamUrl:  `${this.host}/live/${u}/${p}/${s.stream_id}.m3u8`,
-      type:       'live' as const,
-    }))
+    const channels = data.map((s) => {
+      // Prefer a provider-supplied URL when available and non-empty.
+      const providerUrl = (s.direct_source || s.stream_url || '').trim()
+      // Canonical Xtream Codes HLS pattern: /live/<user>/<pass>/<id>.m3u8
+      const canonicalUrl = `${this.host}/live/${u}/${p}/${s.stream_id}.m3u8`
+      const streamUrl = providerUrl || canonicalUrl
+
+      return {
+        id:         String(s.stream_id),
+        name:       s.name,
+        logo:       s.stream_icon || undefined,
+        categoryId: s.category_id != null ? String(s.category_id) : undefined,
+        streamUrl,
+        type:       'live' as const,
+      }
+    })
+
+    // Log one sample so the URL shape can be confirmed without leaking passwords.
+    if (channels.length > 0) {
+      console.info('[XtreamProvider] sample stream URL:', maskUrl(channels[0].streamUrl))
+    }
+
+    return channels
   }
 }
