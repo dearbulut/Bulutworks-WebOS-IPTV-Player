@@ -1,4 +1,0 @@
-# pnpm 11 project-level settings
-# Allow esbuild to run its native-binary install script (required by Vite).
-onlyBuiltDependencies:
-  - esbuild
