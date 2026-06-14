@@ -5,37 +5,9 @@ import type { Category, Channel } from '../../providers/types'
 import { Route, routeUrl } from '../../router/routes'
 import CategoryColumn from './CategoryColumn'
 import ChannelList from './ChannelList'
+import PlayerSurface from '../../player/PlayerSurface'
 
 const ALL_CATEGORY: Category = { id: '', name: 'All Channels' }
-
-interface PlayerPlaceholderProps {
-  channel: Channel | null
-}
-
-function PlayerPlaceholder({ channel }: PlayerPlaceholderProps) {
-  return (
-    <div className="live-player-area">
-      {channel ? (
-        <>
-          <div className="live-player-info">
-            {channel.logo && (
-              <img
-                className="live-player-logo"
-                src={channel.logo}
-                alt=""
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
-              />
-            )}
-            <span className="live-player-name">{channel.name}</span>
-          </div>
-          <div className="live-player-url">{channel.streamUrl}</div>
-        </>
-      ) : (
-        <div className="live-player-hint">← Select a channel</div>
-      )}
-    </div>
-  )
-}
 
 export default function LiveScreen() {
   const [categories,    setCategories]    = useState<Category[]>([ALL_CATEGORY])
@@ -51,7 +23,6 @@ export default function LiveScreen() {
     isFocusBoundary: true,
   })
 
-  // Load categories + all channels once on mount
   useEffect(() => {
     const gen = ++loadGenRef.current
     setCatLoading(true)
@@ -78,7 +49,7 @@ export default function LiveScreen() {
       setChLoading(false)
     })
 
-    // Back key (webOS key code 461 = Back)
+    // Back key: webOS key code 461, or Escape in dev
     const onKey = (e: KeyboardEvent) => {
       if (e.keyCode === 461 || e.key === 'Escape') {
         window.location.hash = routeUrl(Route.Home)
@@ -93,11 +64,7 @@ export default function LiveScreen() {
 
   const handleCategorySelect = useCallback((cat: Category) => {
     setSelectedCat(cat)
-    if (!cat.id) {
-      setChannels(allChannels)
-    } else {
-      setChannels(allChannels.filter((ch) => ch.categoryId === cat.id))
-    }
+    setChannels(cat.id ? allChannels.filter((ch) => ch.categoryId === cat.id) : allChannels)
     setActiveChannel(null)
   }, [allChannels])
 
@@ -120,7 +87,7 @@ export default function LiveScreen() {
           loading={chLoading}
           onSelect={handleChannelSelect}
         />
-        <PlayerPlaceholder channel={activeChannel} />
+        <PlayerSurface url={activeChannel?.streamUrl ?? null} />
       </div>
     </FocusContext.Provider>
   )
